@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # ================================================================
 # YTH001_BL: Parcellation → Diffusion Space (NiftyReg)
 #
