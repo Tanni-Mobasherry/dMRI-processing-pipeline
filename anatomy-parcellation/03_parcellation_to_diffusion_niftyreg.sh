@@ -11,9 +11,9 @@
 #   YTH001_BL
 #
 # Inputs:
-#   dwi_eddy_BA.mif/ "/dmri/preproc/bias-field-correction/dwi_eddy_BA.mif"
+#   dwi_eddy_BA.mif/ "/Volumes/Toshiba-Ext/raw-data/YTH001/BL/dmri/preproc/bias-field-correction/dwi_eddy_BA.mif"
 #   Brain.mgz (longitudinal FreeSurfer) "/Volumes/Toshiba-Ext/raw-data/YTH001/FS_longi/FS_BL/mri/Brain.mgz"
-#   parcels_a2009s.mif
+#   parcels_a2009s.mif "/Volumes/Toshiba-Ext/raw-data/YTH001/BL/dmri/anatomy-parcellation"
 #
 # Final output:
 #   parcels_a2009s_dwi.mif
