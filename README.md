@@ -1,2 +1,2 @@
 # dMRI-processing-pipeline
-Diffusion MRI preprocessing
+Diffusion MRI preprocessing, modelling and QC pipeline
