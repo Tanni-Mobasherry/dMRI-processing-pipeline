@@ -15,7 +15,19 @@
 #   brain.mgz (longitudinal FreeSurfer) "/Volumes/Toshiba-Ext/raw-data/YTH001/FS_longi/FS_BL/mri/brain.mgz"
 #   parcels_a2009s.mif "/Volumes/Toshiba-Ext/raw-data/YTH001/BL/dmri/anatomy-parcellation"
 #
+# Intermediate outputs:
+#   mean_b0_BA.mif
+#   dwi_mask.mif
+#   mean_b0_BA.nii.gz
+#   dwi_mask.nii.gz
+#   T1_brain.nii.gz
+#   parcels_a2009s.nii.gz
+#   T1_to_b0_aff.txt
+#   T1_in_b0_aff.nii.gz
+#   T1_to_b0_cpp.nii.gz
+#   T1_in_b0_nonlinear_t1warp.nii.gz
 # Final output:
+#   parcels_a2009s_dwi.nii.gz
 #   parcels_a2009s_dwi.mif
 # ================================================================
 
@@ -26,7 +38,7 @@ dwiextract dwi_eddy_BA.mif - -bzero -quiet | \
 mrmath - mean mean_b0_BA.mif -axis 3 -force -quiet
 
 # ------------------------------------------------------------
-#Step 2: Create registration masks
+#Step 2: Create reference image mask for NiftyReg
 # ------------------------------------------------------------
 dwi2mask dwi_eddy_BA.mif dwi_mask.mif -force
 
@@ -54,7 +66,7 @@ mrconvert \
     parcels_a2009s.nii.gz \
     -force \
     -quiet
-#refrence mask
+# Diffusion reference mask (for NiftyReg -rmask)
 mrconvert \
     dwi_mask.mif \
     dwi_mask.nii.gz \
