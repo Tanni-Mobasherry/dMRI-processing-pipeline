@@ -12,7 +12,7 @@
 #
 # Inputs:
 #   dwi_eddy_BA.mif/ "/Volumes/Toshiba-Ext/raw-data/YTH001/BL/dmri/preproc/bias-field-correction/dwi_eddy_BA.mif"
-#   Brain.mgz (longitudinal FreeSurfer) "/Volumes/Toshiba-Ext/raw-data/YTH001/FS_longi/FS_BL/mri/Brain.mgz"
+#   brain.mgz (longitudinal FreeSurfer) "/Volumes/Toshiba-Ext/raw-data/YTH001/FS_longi/FS_BL/mri/Brain.mgz"
 #   parcels_a2009s.mif "/Volumes/Toshiba-Ext/raw-data/YTH001/BL/dmri/anatomy-parcellation"
 #
 # Final output:
@@ -22,83 +22,78 @@
 # ------------------------------------------------------------
 # Step 1: Create mean bias-corrected b0 image
 # ------------------------------------------------------------
-
 dwiextract \
-dwi_eddy_BA.mif \
-- \
--bzero \
--quiet | \
-mrmath \
-- \
-mean \
-mean_b0_BA.mif \
--axis 3 \
--force \
--quiet
+dwi_eddy_BA.mif - -bzero -quiet | 
+    mrmath - mean mean_b0_BA.mif 
+        -axis 3 -force -quiet
 # ------------------------------------------------------------
-# Step 2: Convert mean b0 to NIfTI
+#Step 2: Create registration masks
+# ------------------------------------------------------------
+dwi2mask dwi_eddy_BA.mif dwi_mask.mif -force
+
+# ------------------------------------------------------------
+# Step 3: Convert input images to NIfTI
 # ------------------------------------------------------------
 
+# Mean b0 (brain)
 mrconvert \
     mean_b0_BA.mif \
-    mean_b0_BA.nii.gz\
+    mean_b0_BA.nii.gz \
+    -force \
+    -quiet
+
+# Longitudinal FreeSurfer brain
+mrconvert \
+    brain.mgz \
+    T1_brain.nii.gz \
+    -force \
+    -quiet
+
+# Parcellation
+mrconvert \
+    parcels_a2009s.mif \
+    parcels_a2009s.nii.gz \
     -force \
     -quiet
 
 # ------------------------------------------------------------
-# Step 3: Convert longitudinal FreeSurfer T1 (brain.mgz) to NIfTI
-# ------------------------------------------------------------
-mrconvert \
-brain.mgz \
-T1_brain.nii.gz \
--force \
--quiet
-# ------------------------------------------------------------
-# Step 4: Affine registration
+# Step 4: Affine T1-to-b0 registration + mask supplied for ref
 # ------------------------------------------------------------
 reg_aladin \
--ref mean_b0_BA.nii.gz \
--flo T1_brain.nii.gz \
--aff aff.txt \
--res t1_aff.nii.gz \
-> reg_aladin_console.log 2>&1
+  -ref mean_b0_BA.nii.gz \
+  -flo T1_brain.nii.gz \
+  -rmask dwi_mask.nii.gz \
+  -aff T1_to_b0_aff.txt \
+  -res T1_in_b0_aff.nii.gz
 
 # ------------------------------------------------------------
-# Step 5: Nonlinear registration
+# Step 5: Nonlinear registration + mask supplied for ref
 # ------------------------------------------------------------
-
 reg_f3d \
--ref mean_b0_BA.nii.gz \
--flo T1_brain.nii.gz \
--aff aff.txt \
--cpp cpp.nii.gz \
--res t1_warp.nii.gz \
-> reg_f3d_console.log 2>&1
+    -ref mean_b0_BA.nii.gz \
+    -flo T1_brain.nii.gz \
+    -rmask dwi_mask.nii.gz \
+    -aff T1_to_b0_aff.txt \
+    -cpp T1_to_b0_cpp.nii.gz \
+    -res T1_in_b0_nonlinear_t1wrap.nii.gz \
+    > reg_f3d_console.log 2>&1
 
 # ------------------------------------------------------------
-# Step 6: Convert parcellation to NIfTI
-# ------------------------------------------------------------
-mrconvert \
-parcels_a2009s.mif \
-parcels_a2009s.nii.gz \
--force \
--quiet
-# ------------------------------------------------------------
-# Step 7: Resample parcellation into diffusion space
-#
+# Step 6:  Apply the SAME affine transform to the parcellation
+# 
 # Nearest-neighbour interpolation (-inter 0) is used because
 # the parcellation contains discrete integer labels.
 # ------------------------------------------------------------
 reg_resample \
--ref mean_b0_BA.nii.gz \
--flo parcels_a2009s.nii.gz \
--trans cpp.nii.gz \
--inter 0 \
--res parcels_a2009s_dwi.nii.gz \
-> reg_resample_console.log 2>&1
+    -ref mean_b0_BA.nii.gz \
+    -flo parcels_a2009s.nii.gz \
+    -trans T1_to_b0_cpp.nii.gz \
+    -inter 0 \
+    -res parcels_a2009s_dwi.nii.gz
+    > reg_resample_console.log 2>&1
 
 # ------------------------------------------------------------
-# Step 8: Convert back to MRtrix format
+# Step 9: Convert output to MRtrix format
 # ------------------------------------------------------------
 mrconvert \
 parcels_a2009s_dwi.nii.gz \
