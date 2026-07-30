@@ -1,23 +1,36 @@
 #!/bin/bash
 
-# Atlas Relabelling — MRtrix labelconvert
-# Example dataset: YTH001/BL
+# ============================================================
+# Step 1: Atlas relabelling
+# Test subject: YTH001 / BL
 #
-# Input:
+# Inputs:
 #   aparc.a2009s+aseg.mgz
-#   (from Sjoerd's longitudinal FreeSurfer processing)
+#   Copied from Sjoerd's longitudinal FreeSurfer results:
+#   "/Volumes/Toshiba-Ext/raw-data/YTH001/FS_longi/FS_BL/mri/"
+#   Working copy:
+#   "/Volumes/Toshiba-Ext/raw-data/YTH001/BL/dmri/anatomy-parcellation/"
 #
-# Output:
+#   FreeSurferColorLUT.txt
+#   "/Applications/freesurfer/FreeSurferColorLUT.txt"
+#
+#   fs_a2009s.txt
+#   "/usr/local/mrtrix3/share/mrtrix3/labelconvert/fs_a2009s.txt"
+#
+# Outputs:
 #   parcels_a2009s.mif
-#
-# Run this script from inside the YTH001 directory.
+#   "/Volumes/Toshiba-Ext/raw-data/YTH001/BL/dmri/anatomy-parcellation/"
+# ============================================================
 
-DATA="BL"
-AP="$DATA/dmri/anatomy-parcellation"
+
+# ------------------------------------------------------------
+# Step 1: Convert the FreeSurfer anatomical parcellation
+#         to the MRtrix3 lookup table
+# ------------------------------------------------------------
 
 labelconvert \
-  "$AP/aparc.a2009s+aseg.mgz" \
-  /Applications/freesurfer/FreeSurferColorLUT.txt \
-  /usr/local/mrtrix3/share/mrtrix3/labelconvert/fs_a2009s.txt \
-  "$AP/parcels_a2009s.mif" \
-  -force
+aparc.a2009s+aseg.mgz \
+/Applications/freesurfer/FreeSurferColorLUT.txt \
+/usr/local/mrtrix3/share/mrtrix3/labelconvert/fs_a2009s.txt \
+parcels_a2009s.mif \
+-force
