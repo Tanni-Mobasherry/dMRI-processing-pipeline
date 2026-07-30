@@ -13,8 +13,7 @@
 # Inputs:
 #   dwi_eddy_BA.mif
 #   Bias-field-corrected diffusion image generated during
-#   diffusion preprocessing:
-#   step: 
+#   step: 01_preprocessing/09_bias_field_correction.sh
 #   "/Volumes/Toshiba-Ext/raw-data/YTH001/BL/dmri/preproc/bias-field-correction/"
 #
 #   brain.mgz
@@ -22,7 +21,8 @@
 #   "/Volumes/Toshiba-Ext/raw-data/YTH001/FS_longi/FS_BL/mri/"
 #
 #   parcels_a2009s.mif
-#   Relabelled FreeSurfer parcellation generated in the 2-anatomy-parcellation/02_atlas_relabelling.sh step:
+#   Relabelled FreeSurfer parcellation generated during
+#   step: 2-anatomy-parcellation/02_atlas_relabelling.sh step:
 #   "/Volumes/Toshiba-Ext/raw-data/YTH001/BL/dmri/anatomy-parcellation/"
 #
 # Intermediate outputs:
