@@ -21,7 +21,7 @@
 #   "/Volumes/Toshiba-Ext/raw-data/YTH001/FS_longi/FS_BL/mri/"
 #
 #   parcels_a2009s.mif
-#   Relabelled FreeSurfer parcellation generated in the previous step:
+#   Relabelled FreeSurfer parcellation generated in the 2-anatomy-parcellation/02_atlas_relabelling.sh step:
 #   "/Volumes/Toshiba-Ext/raw-data/YTH001/BL/dmri/anatomy-parcellation/"
 #
 # Intermediate outputs:
