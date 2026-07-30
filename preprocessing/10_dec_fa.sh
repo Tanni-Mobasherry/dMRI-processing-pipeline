@@ -1,26 +1,62 @@
-#!/bin/bash
+# ============================================================
+# DEC-FA validation
+# Test subject: YTH001 / BL
+#
+# Input:
+#   dwi_eddy_BA.mif
+#   "/Volumes/Toshiba-Ext/raw-data/YTH001/BL/dmri/preprocessing/bias-field-correction/dwi_eddy_BA.mif"
+#
+# Outputs:
+#   mask.mif
+#   tensor.mif
+#   fa.mif
+#   dec.mif
+#   dec_fa.mif
+#"/Volumes/Toshiba-Ext/raw-data/YTH001/BL/dmri/preprocessing/dec-fa/"
+# ============================================================
 
-# DEC-FA generation
-# Example dataset: YTH001/BL
-# Run this script from inside the YTH001 directory.
-
-DATA="BL"
+# ------------------------------------------------------------
+# Step 1: Generate a brain mask from the bias-corrected DWI
+# ------------------------------------------------------------
 
 dwi2mask \
-  "$DATA/dmri/preproc/bias-field-correction/dwi_eddy_BA.mif" \
-  "$DATA/dmri/dec-fa/mask.mif"
+dwi_eddy_BA.mif \
+mask.mif \
+-force
+
+
+# ------------------------------------------------------------
+# Step 2: Fit the diffusion tensor model
+# ------------------------------------------------------------
 
 dwi2tensor \
-  "$DATA/dmri/preproc/bias-field-correction/dwi_eddy_BA.mif" \
-  "$DATA/dmri/dec-fa/tensor.mif" \
-  -mask "$DATA/dmri/dec-fa/mask.mif"
+dwi_eddy_BA.mif \
+tensor.mif \
+-mask mask.mif \
+-force
+
+
+# ------------------------------------------------------------
+# Step 3: Compute fractional anisotropy (FA) and the
+#         principal diffusion direction (DEC)
+# ------------------------------------------------------------
 
 tensor2metric \
-  "$DATA/dmri/dec-fa/tensor.mif" \
-  -fa "$DATA/dmri/dec-fa/fa.mif" \
-  -vector "$DATA/dmri/dec-fa/dec.mif"
+tensor.mif \
+-fa fa.mif \
+-vector dec.mif \
+-force
+
+
+# ------------------------------------------------------------
+# Step 4: Generate the directionally encoded colour FA image
+# ------------------------------------------------------------
 
 mrcalc \
-  "$DATA/dmri/dec-fa/dec.mif" -abs \
-  "$DATA/dmri/dec-fa/fa.mif" -mult \
-  "$DATA/dmri/dec-fa/dec_fa.mif"
+dec.mif \
+-abs \
+fa.mif \
+-mult \
+dec_fa.mif \
+-force
+
