@@ -11,9 +11,18 @@
 #   YTH001_BL
 #
 # Inputs:
-#   dwi_eddy_BA.mif/ "/Volumes/Toshiba-Ext/raw-data/YTH001/BL/dmri/preproc/bias-field-correction/dwi_eddy_BA.mif"
-#   brain.mgz (longitudinal FreeSurfer) "/Volumes/Toshiba-Ext/raw-data/YTH001/FS_longi/FS_BL/mri/brain.mgz"
-#   parcels_a2009s.mif "/Volumes/Toshiba-Ext/raw-data/YTH001/BL/dmri/anatomy-parcellation"
+#   dwi_eddy_BA.mif
+#   Bias-field-corrected diffusion image generated during
+#   diffusion preprocessing:
+#   "/Volumes/Toshiba-Ext/raw-data/YTH001/BL/dmri/preproc/bias-field-correction/"
+#
+#   brain.mgz
+#   Longitudinal FreeSurfer brain image provided by Sjoerd:
+#   "/Volumes/Toshiba-Ext/raw-data/YTH001/FS_longi/FS_BL/mri/"
+#
+#   parcels_a2009s.mif
+#   Relabelled FreeSurfer parcellation generated in the previous step:
+#   "/Volumes/Toshiba-Ext/raw-data/YTH001/BL/dmri/anatomy-parcellation/"
 #
 # Intermediate outputs:
 #   mean_b0_BA.mif
