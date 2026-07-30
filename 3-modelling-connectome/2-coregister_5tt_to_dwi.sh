@@ -71,7 +71,7 @@ flirt \
 # ------------------------------------------------------------
 transformconvert \
     d2s.mat \
-    mean_b0_BA_brain.nii.gz
+    mean_b0_BA_brain.nii.gz \
     T1_brain.nii.gz \
     flirt_import \
     d2s.txt
@@ -84,5 +84,5 @@ mrtransform \
     -linear d2s.txt \
     -inverse \
     -template mean_b0_BA.mif \
-    5tt_coreg.mif
+    5tt_coreg.mif \
     -force
