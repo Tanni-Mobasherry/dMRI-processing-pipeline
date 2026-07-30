@@ -2,6 +2,11 @@
 # ============================================================
 # Test subject: YTH001 / BL
 #
+# Purpose:
+# Convert the FreeSurfer aparc.a2009s+aseg parcellation to
+# the MRtrix3 node definition required for connectome
+# construction.
+#
 # Inputs:
 #   aparc.a2009s+aseg.mgz
 #   Copied from Sjoerd's longitudinal FreeSurfer results:
