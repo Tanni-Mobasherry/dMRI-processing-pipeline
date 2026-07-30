@@ -14,6 +14,7 @@
 #   dwi_eddy_BA.mif
 #   Bias-field-corrected diffusion image generated during
 #   diffusion preprocessing:
+#   step: 
 #   "/Volumes/Toshiba-Ext/raw-data/YTH001/BL/dmri/preproc/bias-field-correction/"
 #
 #   brain.mgz
