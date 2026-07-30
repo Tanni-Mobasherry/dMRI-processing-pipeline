@@ -1,24 +1,44 @@
 #!/bin/bash
 
-# DWI Bias-Field Correction
-# Example dataset: YTH001/BL
-# Paths below are relative to the YTH001 directory.
-# Run this script from inside the YTH001 directory.
+# ============================================================
+# Step 9: DWI Bias-Field Correction
+# Test subject: YTH001 / BL
+#
+# Inputs:
+#   dwi_eddy.nii.gz
+#   dwi_eddy.eddy_rotated_bvecs
+#   dwi_cat.bval
+#   "/Volumes/Toshiba-Ext/raw-data/YTH001/BL/dmri/preprocessing/eddy/"
+#
+# Outputs:
+#   dwi_eddy.mif
+#   dwi_eddy_BA.mif
+#   biasfield.mif
+#   "/Volumes/Toshiba-Ext/raw-data/YTH001/BL/dmri/preprocessing/bias-field-correction/"
+# ============================================================
 
-DATA="BL"
 
-# 1. EDDY Output -> MRtrix Conversion
+# ------------------------------------------------------------
+# Step 1: Convert the eddy-corrected DWI from NIfTI to MRtrix
+#          format and import the gradient information
+# ------------------------------------------------------------
+
 mrconvert \
-  "$DATA/dmri/preproc/eddy/dwi_eddy.nii.gz" \
-  "$DATA/dmri/preproc/bias-field-correction/dwi_eddy.mif" \
-  -fslgrad \
-  "$DATA/dmri/preproc/eddy/dwi_eddy.eddy_rotated_bvecs" \
-  "$DATA/dmri/preproc/eddy/dwi_cat.bval" \
-  -force
+dwi_eddy.nii.gz \
+dwi_eddy.mif \
+-fslgrad \
+dwi_eddy.eddy_rotated_bvecs \
+dwi_cat.bval \
+-force
 
-# 2. DWI Bias-Field Correction — ANTs N4
+
+# ------------------------------------------------------------
+# Step 2: Perform ANTs N4 bias-field correction on the
+#          eddy-corrected DWI
+# ------------------------------------------------------------
+
 dwibiascorrect ants \
-  "$DATA/dmri/preproc/bias-field-correction/dwi_eddy.mif" \
-  "$DATA/dmri/preproc/bias-field-correction/dwi_eddy_BA.mif" \
-  -bias "$DATA/dmri/preproc/bias-field-correction/biasfield.mif" \
-  -force
+dwi_eddy.mif \
+dwi_eddy_BA.mif \
+-bias biasfield.mif \
+-force
