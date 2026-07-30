@@ -1,7 +1,9 @@
 # Coregister 5TT to Diffusion Space
 # Purpose:
-#Coregister the 5TT image to diffusion space using the transformation estimated between
-# the diffusion mean b0 image and the longitudinal FreeSurfer brain image.
+# Coregister the five-tissue-type (5TT) image from longitudinal
+# FreeSurfer anatomical space into diffusion space by estimating a
+# rigid-body transformation between the brain-masked mean b0 image
+#and the longitudinal T1 brain image.
 #
 # Subject:
 #   YTH001_BL
@@ -18,9 +20,10 @@
 #   2-anatomy-parcellation/03_parcellation_to_diffusion_space.sh step:
 #   "/Volumes/Toshiba-Ext/raw-data/YTH001/BL/dmri/anatomy-parcellation/"
 #
-#   brain.mgz
-#   Longitudinal FreeSurfer brain image:
-#   "/Volumes/Toshiba-Ext/raw-data/YTH001/FS_longi/FS_BL/mri/"
+#   T1_brain.nii.gz generated from 
+#   (brain.mgz Longitudinal FreeSurfer brain image) in step:
+#    02-anatomy-parcellation/03_parcellation_to_diffusion_niftyreg.sh 
+#    "/Volumes/Toshiba-Ext/raw-data/YTH001/BL/dmri/anatomy-parcellation/"
 #
 #   5tt.mif
 #   Generated in step 
@@ -31,7 +34,6 @@
 #
 #   mean_b0_BA_brain.mif
 #   mean_b0_BA_brain.nii.gz
-#   T1_brain.nii.gz
 #   d2s.mat
 #   d2s.txt
 #
@@ -40,29 +42,47 @@
 #   5tt_coreg.mif
 #   "/Volumes/Toshiba-Ext/raw-data/YTH001/BL/dmri/modelling-connectome/"
 #==============================================================================================
-# Convert the longitudinal FreeSurfer brain image
+# ------------------------------------------------------------
+# Step 1: Create a brain-only mean b0 image & convert to NIFTI
+# ------------------------------------------------------------
+mrcalc \
+    mean_b0_BA.mif \
+    dwi_mask.mif \
+    -mult \
+    mean_b0_BA_brain.mif \
+    -force \
+    -quiet
 mrconvert \
-    /Volumes/Toshiba-Ext/raw-data/YTH001/FS_longi/FS_BL/mri/brain.mgz \
-    /Volumes/Toshiba-Ext/raw-data/YTH001/BL/dmri/modelling-connectome/T1_brain.nii.gz
-# Register diffusion mean b0 to the longitudinal T1 image
+    mean_b0_BA_brain.mif \
+    mean_b0_BA_brain.nii.gz \
+    -force \
+    -quiet
+# ------------------------------------------------------------
+# Step 2:  Estimates diffusion-to-structural registration.
+# ------------------------------------------------------------
 flirt \
-    -in mean_b0_BA.nii.gz \
+    -in mean_b0_BA_brain.nii.gz \
     -ref T1_brain.nii.gz \
     -dof 6 \
     -cost normmi \
     -omat d2s.mat
-# Convert the FSL transform to MRtrix format
+# ------------------------------------------------------------
+# Step 3: Convert the FSL transform to MRtrix format
+# ------------------------------------------------------------
 transformconvert \
     d2s.mat \
-    mean_b0_BA.nii.gz \
+    mean_b0_BA_brain.nii.gz
     T1_brain.nii.gz \
     flirt_import \
     d2s.txt
 
-
-# Transform the 5TT image into diffusion space
+# -------------------------------------------------------------------------------------------------------
+# Step 4: Applies the transformation in the opposite direction, moving the T1-derived 5TT into diffusion
+# -------------------------------------------------------------------------------------------------------
 mrtransform \
     5tt.mif \
     -linear d2s.txt \
     -inverse \
+    -template mean_b0_BA.mif \
     5tt_coreg.mif
+    -force
