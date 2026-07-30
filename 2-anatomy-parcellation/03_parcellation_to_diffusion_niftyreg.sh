@@ -1,6 +1,6 @@
 
 # ================================================================
-# YTH001_BL: Parcellation → Diffusion Space (NiftyReg)
+# Parcellation → Diffusion Space (NiftyReg)
 #
 # Purpose:
 # Register the longitudinal FreeSurfer T1 image to diffusion
