@@ -1,7 +1,5 @@
-#!/bin/bash
 
 # ============================================================
-# Step 1: Atlas relabelling
 # Test subject: YTH001 / BL
 #
 # Inputs:
@@ -25,7 +23,7 @@
 
 # ------------------------------------------------------------
 # Step 1: Convert the FreeSurfer anatomical parcellation
-#         to the MRtrix3 lookup table
+#         to the MRtrix3 lookup table - Atlas relabelling
 # ------------------------------------------------------------
 
 labelconvert \
