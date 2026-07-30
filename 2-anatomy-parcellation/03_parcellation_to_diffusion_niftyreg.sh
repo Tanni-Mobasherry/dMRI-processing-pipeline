@@ -26,9 +26,11 @@
 #   T1_in_b0_aff.nii.gz
 #   T1_to_b0_cpp.nii.gz
 #   T1_in_b0_nonlinear_t1warp.nii.gz
-# Final output:
+# Final outputs:
 #   parcels_a2009s_dwi.nii.gz
 #   parcels_a2009s_dwi.mif
+#
+#"/Volumes/Toshiba-Ext/raw-data/YTH001/BL/dmri/anatomy-parcellation/"
 # ================================================================
 
 # ------------------------------------------------------------
