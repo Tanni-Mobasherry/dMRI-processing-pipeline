@@ -83,6 +83,5 @@ mrtransform \
     5tt.mif \
     -linear d2s.txt \
     -inverse \
-    -template mean_b0_BA.mif \
     5tt_coreg.mif \
     -force
