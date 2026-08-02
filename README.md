@@ -30,7 +30,7 @@ The pipeline includes:
 
 ```
 01_preprocessing/
-    Diffusion preprocessing and QC
+    Diffusion preprocessing
 
 02_anatomy-parcellation/
     Anatomical processing and registration
