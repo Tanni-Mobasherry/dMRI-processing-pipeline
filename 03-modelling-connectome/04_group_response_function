@@ -1,0 +1,47 @@
+# ================================================================
+#            Group-Average Response Functions
+#
+# Purpose:
+# Generate group-average white-matter (WM), grey-matter (GM),
+# and cerebrospinal fluid (CSF) response functions by averaging
+# the subject-specific response functions across all subjects and
+# time points using MRtrix3 responsemean.
+#
+# The resulting group-average response functions are used as the
+# inputs for MSMT-CSD in the next processing step.
+#
+# Inputs:
+#
+#   wm.txt
+#   gm.txt
+#   csf.txt
+#   Subject-specific tissue response functions generated in:
+#   3-modelling-connectome/03_response_function.sh
+#   "/Volumes/Toshiba-Ext/raw-data/YTH###/{BL|FU}/dmri/
+#    modelling-connectome/response-function/"
+#
+# Outputs:
+#
+#   group_wm.txt
+#   group_gm.txt
+#   group_csf.txt
+#   3-modelling-connectome/group-response-function/
+#
+# ================================================================
+
+
+# ------------------------------------------------------------
+# Step 1: Generate group-average response functions
+# ------------------------------------------------------------
+
+responsemean \
+    wm.txt \
+    group_wm.txt
+
+responsemean \
+    gm.txt \
+    group_gm.txt
+
+responsemean \
+    csf.txt \
+    group_csf.txt
