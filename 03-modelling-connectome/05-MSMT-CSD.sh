@@ -46,7 +46,7 @@
 #   csf.mif
 #   Cerebrospinal fluid tissue compartment
 #
-#   "/Volumes/Toshiba-Ext/raw-data/YTH001/BL/dmri/modelling-connectome/MSMT-CSD/"
+#   "/Volumes/Toshiba-Ext/raw-data/YTH001/BL/dmri/modelling-connectome/group-MSMT-CSD/"
 # ================================================================
 
 
