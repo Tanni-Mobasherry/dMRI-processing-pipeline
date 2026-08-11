@@ -1,3 +1,18 @@
+~/Desktop/loss-check-upsampled/
+├── YTH001/
+│   ├── BL/
+│   │   ├── old_mask_on_upsampled_grid.mif
+│   │   ├── old_mask_eroded.mif
+│   │   ├── all_mask_loss.mif
+│   │   ├── deep_mask_loss.mif
+│   │   ├── voxels_to_restore.mif
+│   │   ├── actually_added.mif
+│   │   └── corrected_mask.mif
+│   ├── FU/
+│   └── YTH001_mask_QC.csv
+├── YTH002/
+└── all_sessions_mask_QC.csv
+
 Quantitative QC for Tissue Exclusion in Upsampled DWI Masks
 
 Purpose
