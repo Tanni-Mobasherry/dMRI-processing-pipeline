@@ -1,3 +1,6 @@
+
+```bash
+
 # 5TT-Based Restoration of an Upsampled DWI Mask
 # subject: YTH001 / BL
 #
@@ -44,6 +47,7 @@
 # dwi_mask_upsampled_5tt_corrected.mif
 
 # /Volumes/Toshiba-Ext/raw-data/YTH001/BL/dmri/modelling-connectome/longitudinal/5tt-based-restoration/
+
 # ============================================================
 # ------------------------------------------------------------
 # Step 1: Resample the original 2 mm binary mask onto the exact
@@ -487,7 +491,7 @@ dwi_mask_upsampled_5tt_corrected.mif \
 -quiet
 # ------------------------------------------------------------ # ------------------------------------------------------------ # ------------------------------------------
 
-
+```
 Output interpretation:
 
 
