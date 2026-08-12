@@ -56,7 +56,7 @@
 # ------------------------------------------------------------
 
 mrgrid \
-original_2mm_mask.mif \
+mask.mif \
 regrid \
 -template \
 dwi_eddy_BA_upsampled.mif \
