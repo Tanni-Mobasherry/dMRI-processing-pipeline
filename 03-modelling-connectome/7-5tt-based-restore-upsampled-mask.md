@@ -524,3 +524,33 @@ Voxels outside valid 5TT coverage are never automatically selected through the C
 No automatic fillh, fillh26, dilation, or erosion-based closing is applied to the final mask.
 The original dwi_mask_upsampled.mif is never overwritten.
 Only dwi_mask_upsampled_5tt_corrected.mif should be treated as the final corrected mask; the other files are intermediate or QC outputs.
+
+#find restore components
+RESTORE=~/Desktop/YTH001_BL_voxels_to_restore.mif
+COMPONENTS=~/Desktop/YTH001_BL_restored_components.mif
+
+maskfilter \
+"$RESTORE" \
+connect \
+"$COMPONENTS" \
+-force
+----
+max_label=$(mrstats \
+"$COMPONENTS" \
+-output max \
+-quiet | awk '{printf "%d",$1}')
+
+for i in $(seq 1 "$max_label"); do
+    count=$(mrcalc \
+        "$COMPONENTS" \
+        "$i" \
+        -eq \
+        -quiet - | \
+        mrstats - \
+        -ignorezero \
+        -output count \
+        -quiet)
+
+    printf "%s voxels | component %s\n" "$count" "$i"
+done | sort -nr
+------
