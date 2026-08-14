@@ -446,6 +446,7 @@ candidate_not_selected_for_restoration.mif \
 -overlay.interpolation 0
 
 # ------------------------------------------------------------
+#final output-corrected mask
 #Step 13:Restore only candidate voxels supported by valid
 #5TT coverage and satisfying WM > 0.25 OR CSF < 0.5
 # ------------------------------------------------------------
