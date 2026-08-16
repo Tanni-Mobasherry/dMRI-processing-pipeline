@@ -30,6 +30,8 @@
 #  > group_wm.txt
 #  > group_gm.txt
 #  > group_csf.txt
+#
+#    Stored in:
 #   dmri/group-response-function/"
 #
 # dwi_mask_upsampled_5tt_corrected.mif
