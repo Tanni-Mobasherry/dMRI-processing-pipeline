@@ -17,23 +17,34 @@
 #
 # Inputs:
 #
-#   dwi_eddy_BA.mif
-#   Bias-field-corrected diffusion image generated in:
-#   1-diffusion-preprocessing/09_bias_field_correction.sh
-#   "/Volumes/Toshiba-Ext/raw-data/YTH001/BL/dmri/preprocessing/bias-field-correction/"
+# dwi_eddy_BA_upsampled.mif
 #
-#   group_wm.txt
-#   group_gm.txt
-#   group_csf.txt
-#   Group-average tissue response functions generated in:
-#   3-modelling-connectome/04_group_response_function.sh
-#   "/Volumes/Toshiba-Ext/raw-data/group-response-function/"
+#    Bias-field-corrected DWI upsampled from 2 mm to 1.25 mm
+#    isotropic resolution.
 #
-#   mask.mif
-#   Diffusion brain mask generated from the bias-field-corrected
-#   DWI in:
-#   1-diffusion-preprocessing/10_dec_fa.sh
-#   "/Volumes/Toshiba-Ext/raw-data/YTH001/BL/dmri/preprocessing/dec-fa/"
+#    Generated during longitudinal DWI upsampling:
+#
+#    dmri/modelling-connectome/longitudinal/upsampling/
+#    dwi_eddy_BA_upsampled.mif
+#
+#
+#   dmri/modelling-connectome/longitudinal/group-response-function/"
+#
+# dwi_mask_upsampled_5tt_corrected.mif
+#
+#    Final 1.25 mm DWI mask after comparison with the original
+#    mask and restoration of excluded voxels supported by the
+#    co-registered 5TT image.
+#
+#    Restoration criteria:
+#
+#      WM fraction > 0.25
+#      OR
+#      CSF fraction < 0.5
+#
+#    Stored in:
+#
+#    dmri/modelling-connectome/longitudinal/mask/dwi_mask_upsampled_5tt_corrected.mif
 #
 # Outputs:
 #
@@ -57,9 +68,9 @@
 # ------------------------------------------------------------
 
 dwi2fod msmt_csd \
-    dwi_eddy_BA.mif \
+    dwi_eddy_BA_upsampled.mif \
     group_wm.txt wmfod.mif \
     group_gm.txt gm.mif \
     group_csf.txt csf.mif \
-    -mask mask.mif \
+    -mask dwi_mask_upsampled_5tt_corrected.mif \
     -force
