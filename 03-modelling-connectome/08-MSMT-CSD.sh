@@ -19,7 +19,7 @@
 #
 # dwi_eddy_BA_upsampled.mif
 #
-#    Bias-field-corrected DWI upsampled from 2 mm to 1.25 mm
+#   > Bias-field-corrected DWI upsampled from 2 mm to 1.25 mm
 #    isotropic resolution.
 #
 #    Generated during longitudinal DWI upsampling:
@@ -27,8 +27,10 @@
 #    dmri/modelling-connectome/longitudinal/upsampling/
 #    dwi_eddy_BA_upsampled.mif
 #
-#
-#   dmri/modelling-connectome/longitudinal/group-response-function/"
+#  > group_wm.txt
+#  > group_gm.txt
+#  > group_csf.txt
+#   dmri/group-response-function/"
 #
 # dwi_mask_upsampled_5tt_corrected.mif
 #
