@@ -32,7 +32,7 @@
 #  > group_csf.txt
 #
 #    Stored in:
-#   dmri/group-response-function/"
+#    /Volumes/Toshiba-Ext/raw-data/group-response-function/
 #
 # dwi_mask_upsampled_5tt_corrected.mif
 #
