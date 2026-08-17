@@ -13,10 +13,10 @@
 # "/Volumes/Toshiba-Ext/raw-data/YTH001/BL/dmri/preprocessing/dec-fa/"
 #
 # dwi_eddy_BA_upsampled.mif
-# "/Volumes/Toshiba-Ext/raw-data/YTH001/BL/dmri/modelling-connectome/longitudinal/upsampling/"
+# "/Volumes/Toshiba-Ext/raw-data/YTH001/BL/dmri/modelling-connectome/updated-method/upsampling/"
 #
 # dwi_mask_upsampled.mif
-# "/Volumes/Toshiba-Ext/raw-data/YTH001/BL/dmri/modelling-connectome/longitudinal/mask/"
+# "/Volumes/Toshiba-Ext/raw-data/YTH001/BL/dmri/modelling-connectome/updated-method/mask/"
 #
 # 5tt_coreg.mif
 # "/Volumes/Toshiba-Ext/raw-data/YTH001/BL/dmri/modelling-connectome/"
