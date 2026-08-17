@@ -17,7 +17,7 @@
 #
 # Inputs:
 #
-# dwi_eddy_BA_upsampled.mif
+# >dwi_eddy_BA_upsampled.mif
 #
 #   > Bias-field-corrected DWI upsampled from 2 mm to 1.25 mm
 #    isotropic resolution.
@@ -34,7 +34,7 @@
 #    Stored in:
 #    /Volumes/Toshiba-Ext/raw-data/group-response-function/
 #
-# dwi_mask_upsampled_5tt_corrected.mif
+# >dwi_mask_upsampled_5tt_corrected.mif
 #
 #    Final 1.25 mm DWI mask after comparison with the original
 #    mask and restoration of excluded voxels supported by the
@@ -48,7 +48,7 @@
 #
 #    Stored in:
 #
-#    dmri/modelling-connectome/longitudinal/mask/dwi_mask_upsampled_5tt_corrected.mif
+#    dmri/modelling-connectome/updated-method/mask/dwi_mask_upsampled_5tt_corrected.mif
 #
 # Outputs:
 #
@@ -61,7 +61,7 @@
 #   csf.mif
 #   Cerebrospinal fluid tissue compartment
 #
-#   "/Volumes/Toshiba-Ext/raw-data/YTH001/BL/dmri/modelling-connectome/group-MSMT-CSD/"
+#   "/Volumes/Toshiba-Ext/raw-data/YTH001/BL/dmri/modelling-connectome/updated-method/group-MSMT-CSD/"
 # ================================================================
 
 
