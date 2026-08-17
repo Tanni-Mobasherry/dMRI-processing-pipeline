@@ -19,7 +19,7 @@
 # Outputs:
 #
 # dwi_eddy_BA_upsampled.mif
-# "/Volumes/Toshiba-Ext/raw-data/YTH001/BL/dmri/modelling-connectome/longitudinal/upsampling/"
+# "/Volumes/Toshiba-Ext/raw-data/YTH001/BL/dmri/modelling-connectome/updated-method/upsampling/"
 # ------------------------------------------------------------
 # Step 1: Upsample the bias-field-corrected DWI
 # ------------------------------------------------------------
