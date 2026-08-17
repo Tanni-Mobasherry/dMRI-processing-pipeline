@@ -19,13 +19,13 @@
 
 # 03-modelling-connectome/05_dwi_upsampling.md
 
-# "/Volumes/Toshiba-Ext/raw-data/YTH001/BL/dmri/modelling-connectome/longitudinal/upsampling/"
+# "/Volumes/Toshiba-Ext/raw-data/YTH001/BL/dmri/modelling-connectome/updated-method/upsampling/"
 
 # Primary output:
 
 # dwi_mask_upsampled.mif
 
-# "/Volumes/Toshiba-Ext/raw-data/YTH001/BL/dmri/modelling-connectome/longitudinal/mask/"
+# "/Volumes/Toshiba-Ext/raw-data/YTH001/BL/dmri/modelling-connectome/updated-method/mask/"
 
 # QC outputs:
 
