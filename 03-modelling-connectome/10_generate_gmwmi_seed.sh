@@ -22,7 +22,7 @@
 # Output:
 #
 #   gmwmSeed.mif
-#   "/Volumes/Toshiba-Ext/raw-data/YTH001/BL/dmri/modelling-connectome/"
+#   "/Volumes/Toshiba-Ext/raw-data/YTH001/BL/dmri/modelling-connectome/updated-method"
 # ================================================================
 
 # ------------------------------------------------------------
