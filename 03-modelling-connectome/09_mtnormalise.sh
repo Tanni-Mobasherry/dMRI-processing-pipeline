@@ -9,23 +9,33 @@
 # This step improves the consistency of tissue amplitudes across
 # subjects and time points for subsequent group-level analysis.
 #
-# Subject:
-#   YTH001_BL
+# Subject/session:
+#   YTH001/BL
 #
 # Inputs:
 #
 #   wmfod.mif
 #   gm.mif
 #   csf.mif
-#   Tissue compartments generated in:
-#   3-modelling-connectome/05_MSMT-CSD.sh
-#   "/Volumes/Toshiba-Ext/raw-data/YTH001/BL/dmri/modelling-connectome/MSMT-CSD/"
 #
-#   mask.mif
-#   Diffusion brain mask generated from the bias-field-corrected
-#   DWI in:
-#   1-diffusion-preprocessing/10_dec_fa.sh
-#   "/Volumes/Toshiba-Ext/raw-data/YTH001/BL/dmri/preprocessing/dec-fa/"
+#   Multi-tissue compartments generated using the group-average
+#   response functions and stored in:
+#   "/Volumes/Toshiba-Ext/raw-data/YTH001/BL/dmri/modelling-connectome/updated-method/group-MSMT-CSD/"
+#
+#   dwi_mask_upsampled_5tt_corrected.mif
+#
+#   Corrected 1.25 mm diffusion mask. The initial mask was generated
+#   from the upsampled DWI and subsequently checked against the
+#   co-registered 5TT tissue compartments. Excluded voxels were
+#   restored according to the agreed 5TT tissue criteria:
+#   WM > 0.25 or CSF < 0.5.
+#
+#   The corrected mask is stored in:
+#   "/Volumes/Toshiba-Ext/raw-data/YTH001/BL/dmri/modelling-connectome/updated-method/mask/dwi_mask_upsampled_5tt_corrected.mif"
+#
+# Output directory:
+#
+#   "/Volumes/Toshiba-Ext/raw-data/YTH001/BL/dmri/modelling-connectome/updated-method/mtnormalise/"
 #
 # Outputs:
 #
@@ -38,7 +48,7 @@
 #   csf_norm.mif
 #   Intensity-normalised CSF tissue compartment
 #
-#   "/Volumes/Toshiba-Ext/raw-data/YTH001/BL/dmri/modelling-connectome/mtnormalise/"
+#   "/Volumes/Toshiba-Ext/raw-data/YTH001/BL/dmri/modelling-connectome/updated-method/mtnormalise"
 # ================================================================
 
 
