@@ -1,3 +1,19 @@
+'''
+ The code refits the LME for each of the 33 edges:
+The model is:
+(FBC ~ Time * ResponseGroup + Age + Sex + (1|Participant)\)
+
+\]Then it calculates/checks:
+- Model convergence and optimiser used.
+- Random-intercept variance and residual variance.
+- ICC = proportion of variance attributable to between-participant differences.
+- Standardized residuals, including counts with \(|r|>2\) and \(|r|>3\).
+- Shapiro–Wilk test of residual normality — used only diagnostically, not as a pass/fail rule.
+- Residual–fitted correlation.
+- Residual-vs-fitted plots to inspect model fit/heteroscedasticity or patterns.
+- Q–Q plots to visually assess residual normality.
+- Checks that every participant has exactly one BL and one FU measurement for every edge.
+'''
 from pathlib import Path
 import warnings
 import numpy as np
