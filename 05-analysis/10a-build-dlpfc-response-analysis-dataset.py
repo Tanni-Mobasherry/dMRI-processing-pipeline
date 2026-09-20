@@ -1,3 +1,4 @@
+#This code merge FBC + clinical data and classify responders
 from pathlib import Path
 import pandas as pd
 import numpy as np
