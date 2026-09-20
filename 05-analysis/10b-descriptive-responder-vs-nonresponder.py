@@ -1,3 +1,4 @@
+#This code descriptively inspect responder vs non-responder ΔFBC
 from pathlib import Path
 import pandas as pd
 import numpy as np
